@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView t=(ImageView)view;
         String l=t.getTag().toString();
 
+
     }
     int checker(int c[][],int d)
     {

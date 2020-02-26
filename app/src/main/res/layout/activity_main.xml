@@ -146,13 +146,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
+            android:textSize="50dp"
+            android:layout_gravity="center_horizontal"
             android:text="" />
 
         <Button
             android:id="@+id/restart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="50dp"
             android:onClick="again"
             android:text="Play Again" />
     </LinearLayout>

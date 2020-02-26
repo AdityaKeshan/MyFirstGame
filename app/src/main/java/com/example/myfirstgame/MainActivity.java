@@ -3,29 +3,34 @@ package com.example.myfirstgame;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.gridlayout.widget.GridLayout;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    static int active=0;
+    int active=0;
     TextView result;
+   GridLayout griddy;
     Button restart;
     LinearLayout lay;
     int b[][]={{2,2,2},{2,2,2},{2,2,2}};
     public void foder(View view)
     {
-        int win=2;
         ImageView t=(ImageView)view;
         String l=t.getTag().toString();
         int n=(int)l.charAt(0)-48;
         int m=(int)l.charAt(1)-48;
-        t.setTranslationY(-1000f);
-        if((b[n][m]==2)&&(full(b)==1))
+
+        if((b[n][m]==2) && full(b)==1)
+
+
         {
+            t.setTranslationY(-1000f);
             if (active ==0)
             {
                 t.setImageResource(R.drawable.cross);
@@ -40,14 +45,17 @@ public class MainActivity extends AppCompatActivity {
                 active=0;
                 b[n][m]=1;
             }
-            if(checker(b,0)==0)
+            Log.i("error",Integer.toString(n) + m + b[n][m]);
+
+            if(checker(b,0)==1)
             {
                 result.setText("Cross wins");
+
                 lay.setVisibility(View.VISIBLE);
             }
-            else if(checker(b,1)==0)
+            else if(checker(b,1)==1)
             {
-                result.setText("Cross wins");
+                result.setText("Tick wins");
                 lay.setVisibility(View.VISIBLE);
             }
             else
@@ -122,20 +130,33 @@ public class MainActivity extends AppCompatActivity {
     public void again(View view)
     {
         active=0;
-        GridLayout griddy=(GridLayout)findViewById(R.id.griddy);
+        ImageView t=(ImageView)view;
         for(int i=0;i<griddy.getChildCount();i++)
         {
             ((ImageView)griddy.getChildAt(i)).setImageResource(0);
         }
+        lay.setVisibility(View.INVISIBLE);
+        for(int i=0;i<=2;i++)
+        {
+            for(int j=0;j<=2;j++)
+            {
+                b[i][j]=2;
+            }
+        }
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); int active=0;
-        result=(TextView)findViewById(R.id.result);
-        restart=(Button)findViewById(R.id.restart);
-        lay=(LinearLayout)findViewById(R.id.lay);
+        result=findViewById(R.id.result);
+        restart=findViewById(R.id.restart);
+        lay=findViewById(R.id.lay);
         lay.setVisibility(View.INVISIBLE);
+
+
+        griddy=findViewById(R.id.griddy);
+
 
     }
 }
